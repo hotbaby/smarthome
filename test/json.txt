@@ -1,0 +1,70 @@
+{
+   "root" : {
+      "child" : [
+         {
+            "child" : null,
+            "id" : "2",
+            "mac" : null,
+            "type" : "airbox",
+            "vender" : "haier"
+         },
+         {
+            "child" : [
+               {
+                  "child" : null,
+                  "id" : "6",
+                  "mac" : "",
+                  "type" : "airpurifier",
+                  "vender" : "haier"
+               },
+               {
+                  "child" : null,
+                  "id" : "7",
+                  "mac" : "",
+                  "type" : "fridge",
+                  "vender" : "haier"
+               }
+            ],
+            "id" : "3",
+            "mac" : null,
+            "type" : "airbox",
+            "vender" : "haier"
+         },
+         {
+            "child" : [
+               {
+                  "child" : [
+                     {
+                        "child" : [
+                           {
+                              "id" : "9"
+                           },
+                           {
+                              "id" : "10"
+                           },
+                           {
+                              "id" : "11"
+                           }
+                        ],
+                        "id" : "8"
+                     }
+                  ],
+                  "id" : "5",
+                  "mac" : "",
+                  "type" : "fan",
+                  "vender" : "meide"
+               }
+            ],
+            "id" : "4",
+            "mac" : "",
+            "type" : "airbox",
+            "vender" : "haier"
+         }
+      ],
+      "id" : "1",
+      "mac" : null,
+      "type" : "router",
+      "vender" : "haier"
+   },
+   "test" : "jsontest"
+}
