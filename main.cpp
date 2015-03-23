@@ -193,7 +193,7 @@ int main(int argc, char **argv)
     Json::Value devices, root;
     
     /* Load device list from json file */
-    DeviceListJson g_deviceListJson;
+    DeviceListJson g_deviceListJson(path);
     devices = g_deviceListJson.load();
     root = devices["root"];
     assert(!root.isNull());

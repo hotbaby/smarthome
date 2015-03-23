@@ -311,7 +311,15 @@ bool Airbox::getDeviceList(const Json::Value &request, Json::Value &response)
     {
         for(Json::Value::iterator it = child.begin(); it != child.end(); ++it)
         {
-            result.append(*it);
+            Json::Value item;
+
+            item["id"] = (*it)["id"];
+            item["vender"] = (*it)["vender"];
+            item["type"] = (*it)["type"];
+            item["mac"] = (*it)["mac"];
+            item["name"] = (*it)["name"];
+
+            result.append(item);
         }
         response["result"] = result;
     }
@@ -368,7 +376,7 @@ bool Airbox::getAllAttrInfo(void)
         return false;
     }
 
-    ret = ugw_dev_exec(devCtx, "2000ZZ", "");
+    ret = ugw_dev_exec(devCtx, "60w0ZZ", "");
     if (ret != 0)
     {
         cerr << "Error: ugw_dev_exec error. ret: " << ret << endl;
@@ -673,6 +681,7 @@ void* devListListnerCb(void * arg, context_t * ctx)
 
     Airbox *device = (Airbox*)arg;
 
+    cout << "device list info:" << endl;
     for(int i = 0; i < ctx->dev_count; i++) 
     {
         cout << "\t mac: " << ctx->devs[i].device_id << endl;

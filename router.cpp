@@ -406,6 +406,7 @@ bool Router::getAirboxList(const  Json::Value & request, Json::Value & response)
             item["vender"] = (*it)["vender"];
             item["type"] = (*it)["type"];
             item["mac"] = (*it)["mac"];
+            item["name"] = (*it)["name"];
 
             result.append(item);
         }

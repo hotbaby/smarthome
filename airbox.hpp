@@ -21,10 +21,7 @@ public:
     Airbox(string &type, string &vender, string &id)
     :IRSender(type, vender, id)
     {
-        //m_listener = new ugw_listener_t;
         initUGWListener();
-        memset(&m_attrs, 0, sizeof(m_attrs));
-
         registerHandler(*this);
     }
 
@@ -32,7 +29,6 @@ public:
     {
         unregisterHandler(*this);
         ugw_destroy();
-        //delete m_listener;
     }
 
     bool bind(const Json::Value &request, Json::Value &response);
@@ -64,11 +60,10 @@ public:
     }
 
     /* airbox callbacks */
-    friend void* sysListenerCb(void *arg, context_t *ctx);
-    friend void* devListListnerCb(void *arg, context_t *ctx);
-    friend void* alarmListenerCb(void *arg, context_t *ctx);
-    friend void* attrListenerCb(void *arg, context_t *ctx);
-
+    //friend void* sysListenerCb(void *arg, context_t *ctx);
+    //friend void* devListListnerCb(void *arg, context_t *ctx);
+    //friend void* alarmListenerCb(void *arg, context_t *ctx);
+    //friend void* attrListenerCb(void *arg, context_t *ctx);
     
     /* airbox attributes */
     struct Attr
@@ -115,5 +110,4 @@ private:
 
     vector<string> m_jsonRpcHandlerNameList;
 };
-
 #endif
