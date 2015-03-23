@@ -46,7 +46,13 @@ common.o:common.cpp
 airPurifier.o:airPurifier.cpp
 	$(CPP) -c airPurifier.cpp $(CPPFLAGS) $(LDFLAGS) -o $@
 
+install:
+	sudo mkdir -p /etc/smarthome/
+	sudo cp ./devicelist.json /etc/smarthome/
+	sudo cp smarthome /usr/local/bin/
+
 clean:
 	rm $(OBJS)
 	rm $(TARGET)
+
 

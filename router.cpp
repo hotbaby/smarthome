@@ -150,7 +150,8 @@ bool Router::smartConfig(const  Json::Value & request, Json::Value & response)
     ssid = params["ssid"].asString();
     password = params["password"].asString();
 
-    if (ssid.empty() || password.empty())
+    /* password can be null. */
+    if (ssid.empty())
     {
         Json::Value error;
 
