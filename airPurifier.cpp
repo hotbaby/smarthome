@@ -28,7 +28,7 @@ bool AirPurifier::set(const Json::Value &request, Json::Value &response)
         cerr << "Error: AirPurifier not support operation: " << operation << endl;
         Json::Value error;
 
-        error["code"] = JSON_RPC_AIRPURIFIER_UNPPORT_OPERATION;
+        error["code"] = JSON_RPC_AIRPURIFIER_NOT_SPPORT_OPERATION;
         error["message"] = "AirPurifier not support operation";
         response["error"] = error;
 
@@ -55,7 +55,7 @@ bool AirPurifier::set(const Json::Value &request, Json::Value &response)
 bool AirPurifier::registerHandler(AirPurifier & obj)
 {
     assert(m_jsonRpcHandler);
-    cout << "Info: Airbox::registerHandler pointer:" << m_jsonRpcHandler << endl;
+    cout << "Info: AirPurifier::registerHandler pointer:" << m_jsonRpcHandler << endl;
 
     string name;
     string id = obj.getDeviceId();

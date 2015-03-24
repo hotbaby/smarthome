@@ -19,6 +19,7 @@ OBJS += jsonrpcHandler.o
 OBJS += airbox.o
 OBJS += common.o
 OBJS += airPurifier.o
+OBJS += fan.o
 
 all:$(TARGET)
 
@@ -46,9 +47,12 @@ common.o:common.cpp
 airPurifier.o:airPurifier.cpp
 	$(CPP) -c airPurifier.cpp $(CPPFLAGS) $(LDFLAGS) -o $@
 
+fan.o:fan.cpp
+	$(CPP) -c fan.cpp $(CPPFLAGS) $(LDFLAGS) -o $@
+
 install:
 	sudo mkdir -p /etc/smarthome/
-	sudo cp ./devicelist.json /etc/smarthome/
+	sudo cp ./devicelist.json.default /etc/smarthome/
 	sudo cp smarthome /usr/local/bin/
 
 clean:

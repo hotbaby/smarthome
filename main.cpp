@@ -17,13 +17,14 @@
 #include "router.hpp"
 #include "device.hpp"
 #include "airbox.hpp"
+#include "fan.hpp"
 
 using namespace std;
 
 const char *path = "/etc/smarthome/devicelist.json";
 static vector<SmartDevice*> g_deviceList;
 static JsonRpcHandler g_jsonRpcHandler;
-static DeviceListJson g_deviceListJson;
+static DeviceListJson g_deviceListJson(path);
 
 vector<SmartDevice*>* Router::m_list = &g_deviceList;
 JsonRpcHandler* Router::m_jsonRpcHandler = &g_jsonRpcHandler;
@@ -34,6 +35,7 @@ JsonRpcHandler* Airbox::m_jsonRpcHandler = &g_jsonRpcHandler;
 DeviceListJson* Airbox::m_deviceListJson = &g_deviceListJson;
 
 JsonRpcHandler* AirPurifier::m_jsonRpcHandler = &g_jsonRpcHandler;
+JsonRpcHandler* Fan::m_jsonRpcHandler = &g_jsonRpcHandler;
 
 void* dispatch(gearman_job_st *job, void *context, size_t *resultSize, gearman_return_t *retPtr)
 {
@@ -96,6 +98,11 @@ SmartDevice* instance(string type, string vender, string id)
     {
         //TODO, IRSender not sure.
         device = new AirPurifier(type, vender, id, sender);
+    }
+    else if (type == "Fan")
+    {
+        //TODO, IRSender not sure.
+        device = new Fan(type, vender, id, sender);
     }
     else
     {

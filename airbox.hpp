@@ -14,6 +14,7 @@
 #include "deviceListJson.hpp"
 #include "common.hpp"
 #include "airPurifier.hpp"
+#include "fan.hpp"
 
 class Airbox:public IRSender
 {

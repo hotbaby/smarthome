@@ -82,6 +82,17 @@ bool Airbox::bind(const Json::Value &request, Json::Value &response )
         SmartDevice *device = new AirPurifier(type, vender, id, (IRSender*)this);
         m_list->push_back(device);
     }
+    else if (target["type"] == "Fan")
+    {
+        string type = deviceJson["type"].asString();
+        string vender = deviceJson["vender"].asString();
+        string id = uuid();
+
+        deviceJson["id"] = id;
+
+        SmartDevice *device = new Fan(type, vender, id, (IRSender*)this);
+        m_list->push_back(device);
+    }
     else
     {
         Json::Value error;
