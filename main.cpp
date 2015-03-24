@@ -21,10 +21,10 @@
 
 using namespace std;
 
-const char *path = "/etc/smarthome/devicelist.json";
+const char *g_path = "/etc/smarthome/devicelist.json";
 static vector<SmartDevice*> g_deviceList;
 static JsonRpcHandler g_jsonRpcHandler;
-static DeviceListJson g_deviceListJson(path);
+static DeviceListJson g_deviceListJson(g_path);
 
 vector<SmartDevice*>* Router::m_list = &g_deviceList;
 JsonRpcHandler* Router::m_jsonRpcHandler = &g_jsonRpcHandler;
