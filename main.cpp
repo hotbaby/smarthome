@@ -20,6 +20,7 @@
 
 using namespace std;
 
+const char *path = "/etc/smarthome/devicelist.json";
 static vector<SmartDevice*> g_deviceList;
 static JsonRpcHandler g_jsonRpcHandler;
 static DeviceListJson g_deviceListJson;
@@ -73,7 +74,6 @@ void help(void)
     cout << "\t -f, module name" << endl;
     cout << "\t -h, host" << endl;
     cout << "\t -p, port" << endl;
-    cout << "\t -P, path" << endl;
     cout << endl;
 }
 
@@ -145,13 +145,12 @@ int main(int argc, char **argv)
     const char *moduleName = "smarthome";
     const char *host = "127.0.0.1";
     in_port_t port = 4730;
-    const char *path = "./devicelist.json";
     int c;
 
     /* Parse params */
     while(1)
     {
-        c = getopt(argc, argv, "f:h:p:P:");
+        c = getopt(argc, argv, "f:h:p:");
         if (c < 0)
         {
             break;
@@ -171,9 +170,6 @@ int main(int argc, char **argv)
                 port = atoi(optarg);
                 break;
 
-            case 'P':
-                break;
- 
             default:
                 help();
                 return -1;                
@@ -186,14 +182,12 @@ int main(int argc, char **argv)
         cout << "\t module name: " << moduleName << endl;
         cout << "\t host: " << host << endl;
         cout << "\t port: " << port << endl;
-        cout << "\t path:" << path << endl;
         cout << endl;
     }
 
     Json::Value devices, root;
     
     /* Load device list from json file */
-    DeviceListJson g_deviceListJson(path);
     devices = g_deviceListJson.load();
     root = devices["root"];
     assert(!root.isNull());
