@@ -1,0 +1,42 @@
+
+
+Router 智能家居设备管理协议测试：
+
+1.获取设备列表:
+    curl 127.0.0.1/api/v1/smarthome -d '{"jsonrpc":"2.0", "id":"1.1", "method":"Router.getAirboxList", "params":{"id":null, "vender":"Haier", "type":"Router"}}'
+
+2. 配置空气盒子：
+    curl 127.0.0.1/api/v1/smarthome -d '{"jsonrpc":"2.0", "id":"1.2", "method":"Router.smartConfig", "params":{"id":null, "vender":"Haier", "type":"Router", "ssid":"YiWangWuJi", "password":"2wsx1qaz"}}'
+
+3. Router绑定设备
+    curl 127.0.0.1/api/v1/smarthome -d '{"jsonrpc":"2.0", "id":"1.3", "method":"Router.bind", "params":{"id":null, "vender":"Haier", "type":"Router", "target":{"id":"null", "vender":"Haier", "type":"Airbox", "mac":"C8934643AC85"}}}'
+
+4. Router解绑定设备
+    curl 127.0.0.1/api/v1/smarthome -d '{"jsonrpc":"2.0", "id":"1.4", "method":"Router.unbind", "params":{"id":null, "vender":"Haier", "type":"Router", "target":{"id":"53ad1f915a1f49d6a7239af9fc763627", "vender":"Haier", "type":"Airbox", "mac":"C8934643AC85"}}}'	
+
+Airbox 相关协议：
+
+1. 获取设备列表：
+    curl 127.0.0.1/api/v1/smarthome -d '{"jsonrpc":"2.0", "id":"2.1", "method":"Airbox.getDeviceList", "params":{"id":"", "vender":"Haier", "type":"Airbox"}}'	
+
+2. 获取空气盒子信息：
+    curl 127.0.0.1/api/v1/smarthome -d '{"jsonrpc":"2.0", "id":"2.2", "method":"Airbox.getAttrInfo", "params":{"id":"", "vender":"Haier", "type":"Airbox"}}'	
+
+3. 绑定红外设备：
+    curl 127.0.0.1/api/v1/smarthome -d '{"jsonrpc":"2.0", "id":"2.3", "method":"Airbox.bind", "params":{"id":"", "vender":"Haier", "type":"Airbox", "target":{"id":null, "vender":"Haier", "type":"AirPurifier"}}}'
+    curl 127.0.0.1/api/v1/smarthome -d '{"jsonrpc":"2.0", "id":"2.3", "method":"Airbox.bind", "params":{"id":"", "vender":"Haier", "type":"Airbox", "target":{"id":null, "vender":"Aimeite", "type":"Fan"}}}'
+
+
+4. 解绑定红外设备：
+    curl 127.0.0.1/api/v1/smarthome -d '{"jsonrpc":"2.0", "id":"2.4", "method":"Airbox.unbind", "params":{"id":"", "vender":"Haier", "type":"Airbox", "target":{"id":"","vender":"Haier", "type":"AirPurifier"}}}'
+    curl 127.0.0.1/api/v1/smarthome -d '{"jsonrpc":"2.0", "id":"2.4", "method":"Airbox.unbind", "params":{"id":"", "vender":"Haier", "type":"Airbox", "target":{"id":"","vender":"Aimeite", "type":"Fan"}}}'
+
+AirPurifier 相关协议：
+
+1. 红外控制
+    curl 127.0.0.1/api/v1/smarthome -d '{"jsonrpc":"2.0", "id":"3.1", "method":"AirPurifier.set", "params":{"id":"", "vender":"Haier", "type":"AirPurifier", "operation":"power"}}'
+
+Fan 相关协议：
+
+1. 红外控制
+    curl 127.0.0.1/api/v1/smarthome -d '{"jsonrpc":"2.0", "id":"3.1", "method":"Fan.set", "params":{"id":"", "vender":"Aimeite", "type":"Fan", "operation":"power"}}'
